@@ -10,15 +10,16 @@ public class Graph {
     private Map<Integer,List<Edge>> adjacencyList;
     private Boolean isDirected;
     private List<Integer> vertices;
+    private int vertexAmount;
 
-    public Graph(Boolean isDirected, List<Edge> edges,List<Integer> vertices){
-        if(!isDirected){
-            System.out.println("I work only with directed graphs");
-            return;
+    public Graph(Boolean isDirected, int vertexAmount, List<Edge> edges) {
+        this.isDirected = isDirected;
+        this.edges = edges;
+        this.vertexAmount = vertexAmount;
+        this.vertices = new ArrayList<>();
+        for (Integer i = 1; i <= vertexAmount; i++) {
+            this.vertices.add(i);
         }
-        this.edges=edges;
-        this.isDirected=isDirected;
-        this.vertices=vertices;
         buildAdjacencyList();
     }
 
@@ -30,6 +31,10 @@ public class Graph {
         for(Edge edge: edges){
             adjacencyList.get(edge.getFrom()).add(edge);
         }
+    }
+
+    public int getVertexAmount() {
+        return vertexAmount;
     }
 
     public List<Edge> getEdges() {
@@ -47,14 +52,12 @@ public class Graph {
     public Map<Integer, List<Edge>> getAdjacencyList() {
         return adjacencyList;
     }
-    public int getVerticeSize(){
-        return vertices.size();
-    }
+
     public int getEdgeSize(){
         return edges.size();
     }
     @Override
     public String toString(){
-        return "Directed: "+ isDirected+ "with "+ getVerticeSize()+" vertices and "+getEdgeSize()+" edges";
+        return "Directed: "+ isDirected+ " with "+ getVertexAmount()+" vertices and "+getEdgeSize()+" edges";
     }
 }

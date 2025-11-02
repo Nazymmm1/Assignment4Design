@@ -8,7 +8,7 @@ public class Edge {
     private int to; //v
     private int weight; //w
 
-    public Edge(int u, int v, int w){
+    public Edge(int from, int to, int weight){
         this.from=from;
         this.to=to;
         this.weight=weight;
@@ -27,6 +27,6 @@ public class Edge {
     }
      @Override
     public String toString(){
-        return "u: "+ getFrom() + ",v: "+ getTo()+ "weight: "+ getWeight();
+        return "u: "+ getFrom() + " ,v: "+ getTo()+ ", weight: "+ getWeight();
      }
 }
