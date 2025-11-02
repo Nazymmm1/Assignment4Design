@@ -5,11 +5,24 @@ public class Metrics {
     private int operationsCount;
     private int dfsVisits;      // For Tarjan (SCC)
     private int edgesProcessed; // For Tarjan and DAG-SP relaxations
-    private int queueOps;       // For Kahn (push/pop)
+    private int queuePush;
+    private int queuePoll;
     private long startTime;
     private long endTime;
 
+    public int getQueuePoll() {
+        return queuePoll;
+    }
 
+    public int getQueuePush() {
+        return queuePush;
+    }
+    public void addQueuePush(){
+        queuePush++;
+    }
+    public void addQueuePoll(){
+        queuePoll++;
+    }
     public void start() {
         startTime = System.nanoTime();
     }
@@ -36,11 +49,11 @@ public class Metrics {
 
     public void addDfsVisit() { dfsVisits++; }
     public void addEdgeProcessed() { edgesProcessed++; }
-    public void addQueueOp() { queueOps++; }
+
 
     public int getDfsVisits() { return dfsVisits; }
     public int getEdgesProcessed() { return edgesProcessed; }
-    public int getQueueOps() { return queueOps; }
+
 
     public void reset(){
         totalCost=0;
@@ -48,7 +61,8 @@ public class Metrics {
         startTime=0;
         endTime=0;
         dfsVisits=0;
-        queueOps=0;
+        queuePoll=0;
+        queuePush=0;
         edgesProcessed=0;
     }
     public double measureExecutionTime(Runnable algorithm, int repetitions) {

@@ -53,15 +53,15 @@ public class Tarjan {
             metrics.addEdgeProcessed();
             /*So whats going on here:
             * if my first vertex is 1 and its adjList.get(1)=[1: from: 1, to: 2...]
-            * then at first iteration vertexTo= 2*/
-            int vertexTo=edge.getTo();
+            * then at first iteration neighbour= 2*/
+            int neighbour=edge.getTo();
             /*If vertexTo wasnt still discovered do this: */
-            if(index[vertexTo]==-1){
-                dfs(graph, vertexTo, metrics);
-                lowLink[vertexTo]=Math.min(lowLink[vertex], lowLink[vertexTo]);
+            if(index[neighbour]==-1){
+                dfs(graph, neighbour, metrics);
+                lowLink[vertex]=Math.min(lowLink[vertex], lowLink[neighbour]);
             }
-            else if(onStack[vertexTo]==true){
-                lowLink[vertex]=Math.min(lowLink[vertex], lowLink[vertexTo]);
+            else if(onStack[neighbour]==true){
+                lowLink[vertex]=Math.min(lowLink[vertex], lowLink[neighbour]);
             }
         }
 
